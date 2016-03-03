@@ -5,11 +5,11 @@
 ]
 'patterns': [
     {
-      'match': 'stream|alert|batch|derivative|eval|groupBy|httpOut|influxDBOut|join|mapReduce|sample|stats|union|where|window'
+      'match': 'from|derivative|alert|eval|groupBy|httpOut|influxDBOut|join|mapReduce|sample|stats|union|where|window'
       'name': 'keyword.language.default.tick'
     }
     {
-      'match': 'from'
+      'match': 'stream|batch'
       'name': 'entity.name.type.namespace.tick'
     }
     {
@@ -23,6 +23,10 @@
     {
       'match': 'TRUE|FALSE'
       'name': 'constant.language.tick'
+    }
+    {
+      'match': 'influxql\.([a-zA-Z_]*)'
+      'name': 'support.function.string.tick'
     }
     {
       'match': '\\d+([uµmshdw]|ms)'
