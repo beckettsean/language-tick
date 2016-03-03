@@ -1,0 +1,192 @@
+'scopeName': 'source.tick'
+'name': 'TICK'
+'fileTypes': [
+  'tick'
+]
+'patterns': [
+    {
+      'match': 'stream|alert|batch|derivative|eval|groupBy|httpOut|influxDBOut|join|mapReduce|sample|stats|union|where|window'
+      'name': 'keyword.language.default.tick'
+    }
+    {
+      'match': 'from'
+      'name': 'entity.name.type.namespace.tick'
+    }
+    {
+      'match': 'database|measurement|message|warn|crit|info|stateChangesOnly|log|slack|channel'
+      'name': 'entity.name.function.tick'
+    }
+    {
+      'match': 'lambda'
+      'name': 'variable.other.namespace.tick'
+    }
+    {
+      'match': 'TRUE|FALSE'
+      'name': 'constant.language.tick'
+    }
+    {
+      'match': '(var)\\s([a-zA-Z_][a-zA-Z_0-9]*)\\s='
+      'captures':
+        '1':
+          'name': 'entity.name.type.namespace.tick'
+        '2':
+          'name': 'variable.language.default.tick'
+    }
+    {
+      'include': '#comments'
+    }
+    {
+      'include': '#numbers'
+    }
+    {
+      'include': '#strings'
+    }
+    {
+      'include': '#operators'
+    }
+
+]
+'repository':
+  'comments':
+    'patterns': [
+      {
+        'begin': '//'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.tick'
+        'end': '\\n'
+        'name': 'comment.line.double-slash.tick'
+      }
+    ]
+  'operators':
+    'patterns': [
+      {
+        'match': '%=|\\+=|-=|\\*=|(?<!\\()/='
+        'name': 'keyword.operator.assignment.compound.tick'
+      }
+      {
+        'match': '&=|\\^=|<<=|>>=|>>>=|\\|='
+        'name': 'keyword.operator.assignment.compound.bitwise.tick'
+      }
+      {
+        'match': '!==|!=|<=|>=|===|==|<|>'
+        'name': 'keyword.operator.comparison.tick'
+      }
+      {
+        'match': '&&|!|\\|\\|'
+        'name': 'keyword.operator.logical.tick'
+      }
+      {
+        'match': '&|\\||\\^|~'
+        'name': 'keyword.operator.bitwise.tick'
+      }
+      {
+        'match': '\\?|:'
+        'name': 'keyword.operator.tick'
+      }
+      {
+        'match': '='
+        'name': 'keyword.operator.assignment.tick'
+      }
+      {
+        'match': '--'
+        'name': 'keyword.operator.decrement.tick'
+      }
+      {
+        'match': '\\+\\+'
+        'name': 'keyword.operator.increment.tick'
+      }
+      {
+        'match': '%|\\*|/|-|\\+'
+        'name': 'keyword.operator.tick'
+      }
+    ]
+  'strings':
+    'patterns': [
+      {
+        'begin': '\''
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.tick'
+        'end': '\''
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.tick'
+        'name': 'string.quoted.single.js'
+        'patterns': [
+          {
+            'match': '\\\\(x\\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)'
+            'name': 'constant.character.escape.tick'
+          }
+          {
+            'match': "[^']*[^\\n\\r'\\\\]$"
+            'name': 'invalid.illegal.string.tick'
+          }
+        ]
+      }
+      {
+        'begin': '"'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.tick'
+        'end': '"'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.tick'
+        'name': 'string.quoted.double.tick'
+        'patterns': [
+          {
+            'match': '\\\\(x\\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)'
+            'name': 'constant.character.escape.tick'
+          }
+          {
+            'match': '[^"]*[^\\n\\r"\\\\]$'
+            'name': 'invalid.illegal.string.tick'
+          }
+        ]
+      }
+    ]
+  'numbers':
+    'patterns': [
+      {
+        'match': '\\b(?<!\\$)0(x|X)[0-9a-fA-F]+\\b(?!\\$)'
+        'name': 'constant.numeric.hex.tick'
+      }
+      {
+        'match': '\\b(?<!\\$)0(b|B)[01]+\\b(?!\\$)'
+        'name': 'constant.numeric.binary.tick'
+      }
+      {
+        'match': '\\b(?<!\\$)0(o|O)?[0-7]+\\b(?!\\$)'
+        'name': 'constant.numeric.octal.tick'
+      }
+      {
+        'match': '''(?x)
+          (?<!\\$)(?:
+            (?:\\b[0-9]+(\\.)[0-9]+[eE][+-]?[0-9]+\\b)| # 1.1E+3
+            (?:\\b[0-9]+(\\.)[eE][+-]?[0-9]+\\b)|       # 1.E+3
+            (?:\\B(\\.)[0-9]+[eE][+-]?[0-9]+\\b)|       # .1E+3
+            (?:\\b[0-9]+[eE][+-]?[0-9]+\\b)|            # 1E+3
+            (?:\\b[0-9]+(\\.)[0-9]+\\b)|                # 1.1
+            (?:\\b[0-9]+(\\.)\\B)|                      # 1.
+            (?:\\B(\\.)[0-9]+\\b)|                      # .1
+            (?:\\b[0-9]+\\b(?!\\.))                     # 1
+          )(?!\\$)
+        '''
+        'captures':
+          '0':
+            'name': 'constant.numeric.decimal.tick'
+          '1':
+            'name': 'meta.delimiter.decimal.period.tick'
+          '2':
+            'name': 'meta.delimiter.decimal.period.tick'
+          '3':
+            'name': 'meta.delimiter.decimal.period.tick'
+          '4':
+            'name': 'meta.delimiter.decimal.period.tick'
+          '5':
+            'name': 'meta.delimiter.decimal.period.tick'
+          '6':
+            'name': 'meta.delimiter.decimal.period.tick'
+      }
+    ]
