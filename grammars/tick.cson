@@ -18,7 +18,7 @@
     }
     {
       'match': 'lambda'
-      'name': 'variable.other.namespace.tick'
+      'name': 'support.function.string.tick'
     }
     {
       'match': 'TRUE|FALSE'
