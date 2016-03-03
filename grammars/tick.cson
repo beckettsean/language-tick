@@ -13,7 +13,7 @@
       'name': 'entity.name.type.namespace.tick'
     }
     {
-      'match': 'database|measurement|message|warn|crit|info|stateChangesOnly|log|slack|channel|period|every|id'
+      'match': 'database|measurement|message|warn|crit|info|stateChangesOnly|log|slack|channel|period|every|id|as|unit|nonNegative'
       'name': 'entity.name.function.tick'
     }
     {
@@ -25,7 +25,7 @@
       'name': 'constant.language.tick'
     }
     {
-      'match': '\\d+([uµmshdw]|ms)' 
+      'match': '\\d+([uµmshdw]|ms)'
       'name': 'constant.language.tick'
     }
     {
