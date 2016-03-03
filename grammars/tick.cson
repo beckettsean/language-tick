@@ -25,7 +25,7 @@
       'name': 'constant.language.tick'
     }
     {
-      'match': '\\d+([uµmshdw]|ms)'
+      'match': '\\d+([uµmshdw]|ms)' 
       'name': 'constant.language.tick'
     }
     {
